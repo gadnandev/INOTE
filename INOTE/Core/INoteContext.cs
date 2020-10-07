@@ -17,10 +17,12 @@ namespace INOTE.Core
         }
 
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Note> Notes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserConfiguration());
+            modelBuilder.Configurations.Add(new NoteConfiguration());
         }
     }
 }

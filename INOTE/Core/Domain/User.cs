@@ -16,6 +16,8 @@ namespace INOTE.Core.Domain
 
         public string Email { get; set; }
 
+        public ICollection<Note> Notes { get; set; }
+
         public User()
         {
 

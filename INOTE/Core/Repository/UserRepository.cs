@@ -19,12 +19,17 @@ namespace INOTE.Core.Repository
             get { return Context as INoteContext; }
         }
 
-        public bool Login(User user)
+        public User Login(User user)
         {
             var cypherPassword = StringSecurity.Hash(user.Password);
             var foundUser = INoteContext.Users.SingleOrDefault(u => u.Username.Equals(user.Username));
             
-            return foundUser != null && StringSecurity.Verify(user.Password, foundUser.Password);
+            if(foundUser != null && StringSecurity.Verify(user.Password, foundUser.Password))
+            {
+                return foundUser;
+            }
+
+            return null;
         }
 
         public User Register(User user)

@@ -11,6 +11,6 @@ namespace INOTE.Core.Repository
     {
         User Register(User user);
 
-        bool Login(User user);
+        User Login(User user);
     }
 }

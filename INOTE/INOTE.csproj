@@ -73,14 +73,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\Domain\Note.cs" />
     <Compile Include="Core\Domain\User.cs" />
+    <Compile Include="Core\EntityConfiguration\NoteConfiguration.cs" />
     <Compile Include="Core\EntityConfiguration\UserConfiguration.cs" />
     <Compile Include="Core\EntityValidator\UserValidator.cs" />
     <Compile Include="Core\Helper\StringSecurity.cs" />
     <Compile Include="Core\INoteContext.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
+    <Compile Include="Core\Repository\INoteRepository.cs" />
     <Compile Include="Core\Repository\IRepository.cs" />
     <Compile Include="Core\Repository\IUserRepository.cs" />
+    <Compile Include="Core\Repository\NoteRepository.cs" />
     <Compile Include="Core\Repository\Repository.cs" />
     <Compile Include="Core\Repository\UserRepository.cs" />
     <Compile Include="Core\UnitOfWork.cs" />
@@ -92,12 +96,23 @@
     <Compile Include="Migrations\202009271216592_AlterUsersTable.designer.cs">
       <DependentUpon>202009271216592_AlterUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009272028021_AddNotesTable.cs" />
+    <Compile Include="Migrations\202009272028021_AddNotesTable.designer.cs">
+      <DependentUpon>202009272028021_AddNotesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009272030378_AlterNotesTable.cs" />
+    <Compile Include="Migrations\202009272030378_AlterNotesTable.designer.cs">
+      <DependentUpon>202009272030378_AlterNotesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModel\Commands\RelayCommand.cs" />
     <Compile Include="ViewModel\Common\ViewModelBase.cs" />
+    <Compile Include="ViewModel\CreateOrUpdateNoteVM.cs" />
     <Compile Include="ViewModel\Helper\PasswordBoxAssistant.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="ViewModel\NoteVm.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
+    <Compile Include="ViewModel\ValueConverter\DateTimeToString.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -133,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009271216592_AlterUsersTable.resx">
       <DependentUpon>202009271216592_AlterUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009272028021_AddNotesTable.resx">
+      <DependentUpon>202009272028021_AddNotesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009272030378_AlterNotesTable.resx">
+      <DependentUpon>202009272030378_AlterNotesTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

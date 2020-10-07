@@ -56,5 +56,6 @@ namespace INOTE.Core.Repository
         {
             Context.Set<TEntity>().RemoveRange(entities);
         }
+
     }
 }

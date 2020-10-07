@@ -33,7 +33,6 @@ namespace INOTE.ViewModel
             }
         }
 
-
         private ICommand _navigateRegisterPageCommand;
 
         public ICommand NavigateRegisterPageCommand
@@ -75,9 +74,10 @@ namespace INOTE.ViewModel
             var validationResult = validator.Validate(User, o => { o.IncludeRuleSets("Login"); });
             if(validationResult.IsValid)
             {
-                if (UnitOfWork.Users.Login(User))
+                var loggedInUser = UnitOfWork.Users.Login(User);
+                if (loggedInUser != null)
                 {
-                    Frame.Navigate(new NotesPage());
+                    Frame.Navigate(new NotesPage(loggedInUser));
                 }
                 else
                 {

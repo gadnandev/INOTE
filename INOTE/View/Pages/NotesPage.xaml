@@ -4,11 +4,42 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:INOTE.View.Pages"
+      xmlns:convert="clr-namespace:INOTE.ViewModel.ValueConverter"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="NotesPage">
 
+    <Page.Resources>
+        <convert:DateTimeToString x:Key="dateTimeToString"/>
+    </Page.Resources>
+
     <Grid>
-        
+        <StackPanel Orientation="Vertical">
+            <Label Content="My Notes" HorizontalAlignment="Center"/>
+            <DockPanel Background="LightGray" LastChildFill="True" Margin="25, 25, 25, 0">
+                <TextBlock Text="Search:" Padding="10" DockPanel.Dock="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="searchTb" Height="25" Width="Auto" VerticalContentAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+            </DockPanel>
+            <Button Height="30" Margin="25 25 25 0" Content="New Note" Command="{Binding NewNoteCommand}"/>
+            <DataGrid Margin="25 0 25 25" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding UserNotes}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
+                    <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, Converter={StaticResource dateTimeToString}}"/>
+                    <DataGridTextColumn Header="Updated Date" Binding="{Binding UpdatedDate, Converter={StaticResource dateTimeToString}}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Content}" />
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Prev" Command="{Binding PreviousCommand}" Margin="0,0,10,0"/>
+                <Label Content="{Binding CurrentPageNumber}"/>
+                <Label Content="/"/>
+                <Label Content="{Binding TotalPageCount}"/>
+                <Button Content="Next" Command="{Binding NextCommand}" Margin="10,0,0,0"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

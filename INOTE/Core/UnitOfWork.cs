@@ -13,10 +13,13 @@ namespace INOTE.Core
 
         public IUserRepository Users { get; private set; }
 
+        public INoteRepository Notes { get; private set; }
+
         public UnitOfWork(INoteContext context)
         {
             _context = context;
             Users = new UserRepository(_context);
+            Notes = new NoteRepository(_context);
         }
 
         public int Complete()

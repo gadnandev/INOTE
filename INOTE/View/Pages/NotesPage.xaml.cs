@@ -1,4 +1,6 @@
-﻿using System;
+﻿using INOTE.Core.Domain;
+using INOTE.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,10 @@ namespace INOTE.View.Pages
     /// </summary>
     public partial class NotesPage : Page
     {
-        public NotesPage()
+        public NotesPage(User user)
         {
             InitializeComponent();
+            this.DataContext = new NoteVm(user);
         }
     }
 }

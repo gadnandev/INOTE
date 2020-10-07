@@ -10,6 +10,7 @@ namespace INOTE.Core
     public interface IUnitOfWork : IDisposable
     {
         IUserRepository Users { get; }
+        INoteRepository Notes { get; }
         int Complete();
     }
 }

@@ -24,5 +24,6 @@ namespace INOTE.Core.Repository
         void Remove(TEntity entity);
 
         void RemoveRange(IEnumerable<TEntity> entities);
+
     }
 }
