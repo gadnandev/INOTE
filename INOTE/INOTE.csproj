@@ -77,6 +77,7 @@
     <Compile Include="Core\Domain\User.cs" />
     <Compile Include="Core\EntityConfiguration\NoteConfiguration.cs" />
     <Compile Include="Core\EntityConfiguration\UserConfiguration.cs" />
+    <Compile Include="Core\EntityValidator\NoteValidator.cs" />
     <Compile Include="Core\EntityValidator\UserValidator.cs" />
     <Compile Include="Core\Helper\StringSecurity.cs" />
     <Compile Include="Core\INoteContext.cs" />

@@ -151,25 +151,6 @@ namespace INOTE.ViewModel
         {
             UserNotes = UnitOfWork.Notes.GetUserNotes(_loggedInUser, SearchText, _currentPageNumber, 10);
         }
-
-        private bool AddNote()
-        {
-            Note note = new Note
-            {
-                Title = "My Note Title 6",
-                Content = "My Note Content 6",
-                CreatedDate = DateTime.Now,
-                UpdatedDate = DateTime.Now,
-                UserId = _loggedInUser.Id
-            };
-
-            UnitOfWork.Notes.Add(note);
-            if(UnitOfWork.Complete() > 0)
-            {
-                return true;
-            }
-
-            return false;
-        }
+       
     }
 }

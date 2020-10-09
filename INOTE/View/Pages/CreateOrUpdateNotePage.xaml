@@ -4,11 +4,30 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:INOTE.View.Pages"
+      xmlns:vm="clr-namespace:INOTE.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CreateOrUpdateNotePage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.ColumnSpan="2" Height="Auto" Width="Auto" LastChildFill="True" Margin="10">
+            <Label DockPanel.Dock="Top" Content="New Note" FontSize="{StaticResource HeaderFontSize}"/>
+            <Label DockPanel.Dock="Top" Content="Title" Margin="5 0 5 0"/>
+            <TextBox DockPanel.Dock="Top" x:Name="titleTb" Text="{Binding Note.Title}" Margin="5"/>
+            <Label DockPanel.Dock="Top" Content="Content" Margin="5 0 5 0"/>
+            <TextBox DockPanel.Dock="Top" x:Name="contentTb" Text="{Binding Note.Content}" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"  Margin="5"/>
+        </DockPanel>
+        <Label Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding ErrorText}" Foreground="{StaticResource ErrorColor}" HorizontalAlignment="Center"/>
+        <Button Command="{Binding SaveCommand}" Grid.Row="2" Content="Save" Margin="5"/>
+        <Button Command="{Binding BackCommand}" Grid.Column="2" Grid.Row="2" Content="Back" Margin="5"/>
     </Grid>
 </Page>

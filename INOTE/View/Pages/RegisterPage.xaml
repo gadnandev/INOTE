@@ -16,7 +16,7 @@
 
     <Grid DataContext="{StaticResource vm}">
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <Label Content="Register" Margin="10" HorizontalAlignment="Center"/>
+            <Label Content="Register" FontSize="{StaticResource HeaderFontSize}" Margin="10" HorizontalAlignment="Center"/>
             <Label Content="Username" Margin="5 0 5 0"/>
             <TextBox x:Name="usernameTb" Text="{Binding RegisteredUser.Username}" Margin="5"/>
             <Label Content="Email" Margin="5 0 5 0"/>

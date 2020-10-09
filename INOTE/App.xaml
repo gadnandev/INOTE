@@ -6,6 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Brush x:Key="ErrorColor">#FF0000</Brush>
+            <sys:Double x:Key="HeaderFontSize">20</sys:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
