@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:INOTE.View.Pages"
       xmlns:vm="clr-namespace:INOTE.ViewModel"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="600" d:DesignWidth="500"
       Title="CreateOrUpdateNotePage">
 
     <Grid>
@@ -20,11 +21,17 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <DockPanel Grid.ColumnSpan="2" Height="Auto" Width="Auto" LastChildFill="True" Margin="10">
-            <Label DockPanel.Dock="Top" Content="{Binding Header}" FontSize="{StaticResource HeaderFontSize}"/>
+            <TextBlock DockPanel.Dock="Top" Text="{Binding Header}" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
             <Label DockPanel.Dock="Top" Content="Title" Margin="5 0 5 0"/>
             <TextBox DockPanel.Dock="Top" x:Name="titleTb" Text="{Binding Note.Title}" Margin="5"/>
             <Label DockPanel.Dock="Top" Content="Content" Margin="5 0 5 0"/>
-            <TextBox DockPanel.Dock="Top" x:Name="contentTb" Text="{Binding Note.Content}" TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"  Margin="5"/>
+            <TextBox DockPanel.Dock="Top" x:Name="contentTb" 
+                     Text="{Binding Note.Content}"
+                     Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True" 
+                     HorizontalScrollBarVisibility="Disabled" 
+                     VerticalScrollBarVisibility="Auto"  Margin="5"/>
         </DockPanel>
         <Label Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding ErrorText}" Foreground="{StaticResource ErrorColor}" HorizontalAlignment="Center"/>
         <Button Command="{Binding ActionCommand}" Grid.Row="2" Content="{Binding ActionName}" Margin="5"/>

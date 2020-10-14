@@ -5,8 +5,33 @@
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <Brush x:Key="ErrorColor">#FF0000</Brush>
+            <!--<Brush x:Key="ErrorColor">#FF0000</Brush>
+            <Brush x:Key="TextColor">#F79B45</Brush>
+            <Brush x:Key="ButtonBgColor">#DE8B3E</Brush>
+            <Brush x:Key="ButtonTextColor">#3D2611</Brush>
+            <Brush x:Key="BackgroundColor">#784B22</Brush>
             <sys:Double x:Key="HeaderFontSize">20</sys:Double>
+            <sys:Double x:Key="TextFontSize">15</sys:Double>
+
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="FontSize"
+                    Value="{DynamicResource TextFontSize}" />
+            </Style>
+
+            <Style TargetType="{x:Type PasswordBox}">
+                <Setter Property="FontSize"
+                    Value="{DynamicResource TextFontSize}" />
+            </Style>-->
+
+            <Brush x:Key="ErrorColor">#FF0000</Brush>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

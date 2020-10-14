@@ -7,7 +7,8 @@
       xmlns:vm="clr-namespace:INOTE.ViewModel"
       xmlns:helper="clr-namespace:INOTE.ViewModel.Helper"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="400"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      d:DesignHeight="600" d:DesignWidth="500"
       Title="LoginPage">
 
     <Page.Resources>
@@ -16,10 +17,16 @@
     
     <Grid DataContext="{StaticResource vm}">
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <Label Content="Login" Margin="10" HorizontalAlignment="Center"/>
-            <Label Content="Username" Margin="5 0 5 0"/>
+            <TextBlock Text="Login" Margin="10" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>
+                <Label Content="Username"/>
+            </StackPanel>
             <TextBox x:Name="usernameTb" Text="{Binding User.Username}" Margin="5"/>
-            <Label Content="Password" Margin="5 0 5 0"/>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Lock" VerticalAlignment="Center"/>
+                <Label Content="Password"/>
+            </StackPanel>
             <PasswordBox x:Name="passwordPb" helper:PasswordBoxAssistant.BindPassword="true"  helper:PasswordBoxAssistant.BoundPassword="{Binding Path=User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
             <Button x:Name="loginBtn" Command="{Binding LoginCommand}" Content="Login" Margin="5"/>
             <TextBlock HorizontalAlignment="Center" Margin="5">
