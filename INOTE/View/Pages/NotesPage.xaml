@@ -20,12 +20,22 @@
                 <TextBlock Text="Search:" Padding="10" DockPanel.Dock="Left" VerticalAlignment="Center"/>
                 <TextBox x:Name="searchTb" Height="25" Width="Auto" VerticalContentAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
             </DockPanel>
-            <Button Height="30" Margin="25 25 25 0" Content="New Note" Command="{Binding NewNoteCommand}"/>
-            <DataGrid Margin="25 0 25 25" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding UserNotes}">
+            <Button Height="30" Margin="25 25 25 0" Content="New Note" Command="{Binding CreateOrUpdateNoteCommand}"/>
+            <DataGrid Margin="25 0 25 25" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding UserNotes}" SelectedItem="{Binding SelectedNote}">
+                <DataGrid.Resources>
+                    <DataTemplate x:Key="ActionTemplate">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                            <Button Content="Update"
+                                    Command="{Binding DataContext.CreateOrUpdateNoteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            <Button Content="Delete"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, Converter={StaticResource dateTimeToString}}"/>
                     <DataGridTextColumn Header="Updated Date" Binding="{Binding UpdatedDate, Converter={StaticResource dateTimeToString}}"/>
+                    <DataGridTemplateColumn Header="Action" CellTemplate="{StaticResource ActionTemplate}"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>

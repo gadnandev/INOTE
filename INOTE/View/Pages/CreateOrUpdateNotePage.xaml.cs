@@ -22,10 +22,10 @@ namespace INOTE.View.Pages
     /// </summary>
     public partial class CreateOrUpdateNotePage : Page
     {
-        public CreateOrUpdateNotePage(User user)
+        public CreateOrUpdateNotePage(User user, Note note)
         {
             InitializeComponent();
-            this.DataContext = new CreateOrUpdateNoteVM(user);
+            this.DataContext = new CreateOrUpdateNoteVM(user, note);
         }
     }
 }

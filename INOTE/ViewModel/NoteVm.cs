@@ -56,6 +56,18 @@ namespace INOTE.ViewModel
             }
         }
 
+        private Note _selectedNote;
+
+        public Note SelectedNote
+        {
+            get { return _selectedNote; }
+            set
+            {
+                _selectedNote = value;
+                OnPropertyChanged("SelectedNote");
+            }
+        }
+
         private IEnumerable<Note> _userNotes;
 
         public IEnumerable<Note> UserNotes
@@ -74,11 +86,11 @@ namespace INOTE.ViewModel
         {
             get
             {
-                if (_newNoteCommand == null)
+                if (_previousCommand == null)
                 {
-                    _newNoteCommand = new RelayCommand(this.Previous);
+                    _previousCommand = new RelayCommand(this.Previous);
                 }
-                return _newNoteCommand;
+                return _previousCommand;
             }
         }
 
@@ -96,18 +108,23 @@ namespace INOTE.ViewModel
             }
         }
 
-        private ICommand _newNoteCommand;
+        private ICommand _createOrUpdateNoteCommand;
 
-        public ICommand NewNoteCommand
+        public ICommand CreateOrUpdateNoteCommand
         {
-            get 
+            get
             {
-                if (_newNoteCommand == null)
+                if (_createOrUpdateNoteCommand == null)
                 {
-                    _previousCommand = new RelayCommand(this.NavigateCreateOrUpdateNotePage);
+                    _createOrUpdateNoteCommand = new RelayCommand(this.CreateOrUpdateNote);
                 }
-                return _previousCommand;
+                return _createOrUpdateNoteCommand;
             }
+        }
+
+        private void CreateOrUpdateNote()
+        {
+            NavigateCreateOrUpdateNotePage(SelectedNote);
         }
 
         private void Next()
@@ -128,9 +145,9 @@ namespace INOTE.ViewModel
             }
         }
 
-        public void NavigateCreateOrUpdateNotePage()
+        public void NavigateCreateOrUpdateNotePage(Note note)
         {
-            Frame.Navigate(new CreateOrUpdateNotePage(_loggedInUser));
+            Frame.Navigate(new CreateOrUpdateNotePage(_loggedInUser, note));
         }
 
         public NoteVm(User loggedInUser)

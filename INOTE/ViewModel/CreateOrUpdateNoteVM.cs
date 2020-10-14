@@ -1,10 +1,12 @@
-﻿using INOTE.Core.Domain;
+﻿using INOTE.Core;
+using INOTE.Core.Domain;
 using INOTE.Core.EntityValidator;
 using INOTE.View.Pages;
 using INOTE.ViewModel.Commands;
 using INOTE.ViewModel.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +43,10 @@ namespace INOTE.ViewModel
             }
         }
 
+        public string ActionName { get; set; }
+
+        public string Header { get; set; }
+
         private ICommand _backCommand;
 
         public ICommand BackCommand
@@ -57,26 +63,38 @@ namespace INOTE.ViewModel
             }
         }
 
-        private ICommand _saveCommand;
+        private ICommand _actionCommand;
 
-        public ICommand SaveCommand
+        public ICommand ActionCommand
         {
             get
             {
-                if (_saveCommand == null)
+                if (_actionCommand == null)
                 {
-                    _saveCommand = new RelayCommand(
-                        this.Save
+                    _actionCommand = new RelayCommand(
+                        this.SaveOrUpdate
                     );
                 }
-                return _saveCommand;
+                return _actionCommand;
             }
         }
 
-        public CreateOrUpdateNoteVM(User loggedInUser)
+        public CreateOrUpdateNoteVM(User loggedInUser, Note note)
         {
             _loggedInUser = loggedInUser;
-            Note = new Note();
+            
+            // if the note is null then the action is creation of note, otherwise updation
+            if (note == null)
+            {
+                Note = new Note();
+                ActionName = "Save";
+            } 
+            else
+            {
+                Note = note;
+                ActionName = "Update";
+            }
+            Header = $"Note {ActionName}";
         }
 
         private void NavigateNotesPage()
@@ -84,30 +102,42 @@ namespace INOTE.ViewModel
             Frame.Navigate(new NotesPage(_loggedInUser));
         }
 
-        private void Save()
+        private void SaveOrUpdate()
         {
             NoteValidator validator = new NoteValidator();
             var validationResult = validator.Validate(Note);
             if (validationResult.IsValid)
             {
-                Note note = new Note
+                if(ActionName.Equals("Save"))
                 {
-                    Title = Note.Title,
-                    Content = Note.Content,
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now,
-                    UserId = _loggedInUser.Id
-                };
+                    Note note = new Note
+                    {
+                        Title = Note.Title,
+                        Content = Note.Content,
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now,
+                        UserId = _loggedInUser.Id
+                    };
 
-                UnitOfWork.Notes.Add(note);
+                    UnitOfWork.Notes.Add(note);
+                }
+                else
+                {
+                    Note foundNote = UnitOfWork.Notes.SingleOrDefault(n => n.Id == Note.Id);
+
+                    foundNote.Title = Note.Title;
+                    foundNote.Content = Note.Content;
+                    foundNote.UpdatedDate = DateTime.Now;
+                }
+                
                 if (UnitOfWork.Complete() > 0)
                 {
-                    MessageBox.Show($"Note {Note.Title} saved.", "Note Save", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Note Title: '{Note.Title}' {ActionName.ToLower()}d.", $"Note {ActionName}", MessageBoxButton.OK, MessageBoxImage.Information);
                     NavigateNotesPage();
                 }
                 else
                 {
-                    ErrorText = "Note could not saved";
+                    ErrorText = $"Note could not {ActionName.ToLower()}d.";
                 }
             } 
             else
