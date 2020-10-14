@@ -21,13 +21,14 @@
                 <TextBox x:Name="searchTb" Height="25" Width="Auto" VerticalContentAlignment="Center" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
             </DockPanel>
             <Button Height="30" Margin="25 25 25 0" Content="New Note" Command="{Binding CreateOrUpdateNoteCommand}"/>
-            <DataGrid Margin="25 0 25 25" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding UserNotes}" SelectedItem="{Binding SelectedNote}">
+            <DataGrid Margin="25 0 25 25" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding UserNotes}" SelectedItem="{Binding SelectedNote}" IsReadOnly="True">
                 <DataGrid.Resources>
                     <DataTemplate x:Key="ActionTemplate">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-                            <Button Content="Update"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Content="Update" Margin="5"
                                     Command="{Binding DataContext.CreateOrUpdateNoteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
-                            <Button Content="Delete"/>
+                            <Button Content="Delete" Margin="5"
+                                    Command="{Binding DataContext.DeleteNoteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
                         </StackPanel>
                     </DataTemplate>
                 </DataGrid.Resources>

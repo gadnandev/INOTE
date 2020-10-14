@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -122,9 +123,37 @@ namespace INOTE.ViewModel
             }
         }
 
+        private ICommand _deleteNoteCommand;
+
+        public ICommand DeleteNoteCommand
+        {
+            get 
+            {
+                if (_deleteNoteCommand == null)
+                {
+                    _deleteNoteCommand = new RelayCommand(this.DeleteNote);
+                }
+                return _deleteNoteCommand;
+            }
+        }
+
         private void CreateOrUpdateNote()
         {
             NavigateCreateOrUpdateNotePage(SelectedNote);
+        }
+
+        private void DeleteNote()
+        {
+            var Result = MessageBox.Show($"Would you like to remove {SelectedNote.Title}?", "Note Delete", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (Result == MessageBoxResult.Yes)
+            {
+                UnitOfWork.Notes.Remove(SelectedNote);
+
+                if (UnitOfWork.Complete() > 0)
+                {
+                    UserNotes = UnitOfWork.Notes.GetUserNotes(_loggedInUser, SearchText, _currentPageNumber, 10);
+                }
+            }
         }
 
         private void Next()
