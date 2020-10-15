@@ -8,6 +8,13 @@
       xmlns:helper="clr-namespace:INOTE.ViewModel.Helper"
       mc:Ignorable="d" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="15"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
       d:DesignHeight="600" d:DesignWidth="500"
       Title="LoginPage">
 
@@ -16,23 +23,26 @@
     </Page.Resources>
     
     <Grid DataContext="{StaticResource vm}">
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
-            <TextBlock Text="Login" Margin="10" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}"/>
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>
-                <Label Content="Username"/>
-            </StackPanel>
-            <TextBox x:Name="usernameTb" Text="{Binding User.Username}" Margin="5"/>
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon Kind="Lock" VerticalAlignment="Center"/>
-                <Label Content="Password"/>
-            </StackPanel>
-            <PasswordBox x:Name="passwordPb" helper:PasswordBoxAssistant.BindPassword="true"  helper:PasswordBoxAssistant.BoundPassword="{Binding Path=User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
-            <Button x:Name="loginBtn" Command="{Binding LoginCommand}" Content="Login" Margin="5"/>
-            <TextBlock HorizontalAlignment="Center" Margin="5">
-                <Hyperlink Command="{Binding NavigateRegisterPageCommand}">Register</Hyperlink>
-            </TextBlock>
-            <Label Content="{Binding ErrorText}" Foreground="{StaticResource ErrorColor}" Margin="10" HorizontalAlignment="Center"/>
+        <StackPanel>
+            <TextBlock Text="INOTE" Margin="10" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
         </StackPanel>
+        <materialDesign:Card VerticalAlignment="Center" Margin="10 0 0 0" Padding="10">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <TextBlock Text="Login" Margin="10" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>
+                    <Label Content="Username"/>
+                </StackPanel>
+                <TextBox x:Name="usernameTb" Text="{Binding User.Username}" Margin="5"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <materialDesign:PackIcon Kind="Lock" VerticalAlignment="Center"/>
+                    <Label Content="Password"/>
+                </StackPanel>
+                <PasswordBox x:Name="passwordPb" helper:PasswordBoxAssistant.BindPassword="true"  helper:PasswordBoxAssistant.BoundPassword="{Binding Path=User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                <Button x:Name="loginBtn" Command="{Binding LoginCommand}" Content="Login" Margin="5"/>
+                <Button x:Name="registerBtn" Command="{Binding NavigateRegisterPageCommand}" Content="Register" Margin="5"/>
+                <Label Content="{Binding ErrorText}" Foreground="{StaticResource ErrorColor}" Margin="10" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </materialDesign:Card>
     </Grid>
 </Page>

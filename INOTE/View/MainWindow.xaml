@@ -16,7 +16,9 @@
         Title="MainWindow" Height="600" Width="500">
     <Grid>
         <DockPanel>
-            <Frame NavigationUIVisibility="Hidden" x:Name="MainWindowFrame"/>
+            <ScrollViewer >
+                <Frame NavigationUIVisibility="Hidden" x:Name="MainWindowFrame"/>
+            </ScrollViewer>
         </DockPanel>
     </Grid>
 </Window>

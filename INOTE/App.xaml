@@ -2,27 +2,22 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:INOTE" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <!--<Brush x:Key="ErrorColor">#FF0000</Brush>
-            <Brush x:Key="TextColor">#F79B45</Brush>
-            <Brush x:Key="ButtonBgColor">#DE8B3E</Brush>
-            <Brush x:Key="ButtonTextColor">#3D2611</Brush>
-            <Brush x:Key="BackgroundColor">#784B22</Brush>
-            <sys:Double x:Key="HeaderFontSize">20</sys:Double>
-            <sys:Double x:Key="TextFontSize">15</sys:Double>
-
-            <Style TargetType="{x:Type TextBox}">
-                <Setter Property="FontSize"
-                    Value="{DynamicResource TextFontSize}" />
+            <Style TargetType="materialDesign:PackIcon">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+                <Setter Property="Width" Value="25"/>
+                <Setter Property="Height" Value="25"/>
             </Style>
 
-            <Style TargetType="{x:Type PasswordBox}">
-                <Setter Property="FontSize"
-                    Value="{DynamicResource TextFontSize}" />
-            </Style>-->
-
+            <Style TargetType="TextBlock" x:Key="Header">
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryHueDarkBrush}"/>
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+            
             <Brush x:Key="ErrorColor">#FF0000</Brush>
 
             <ResourceDictionary.MergedDictionaries>
