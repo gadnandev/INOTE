@@ -23,11 +23,9 @@
     </Page.Resources>
     
     <Grid DataContext="{StaticResource vm}">
-        <StackPanel>
-            <TextBlock Text="INOTE" Margin="10" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline3TextBlock}"/>
-        </StackPanel>
         <materialDesign:Card VerticalAlignment="Center" Margin="10 0 0 0" Padding="10">
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+                <Image Margin="25" Stretch="UniformToFill" MaxWidth="256" Source="/Resources/INOTE_LOGO.png"/>
                 <TextBlock Text="Login" Margin="10" HorizontalAlignment="Center" Style="{StaticResource Header}"/>
                 <StackPanel Orientation="Horizontal" Margin="5">
                     <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>

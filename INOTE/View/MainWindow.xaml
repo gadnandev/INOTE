@@ -13,7 +13,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="600" Width="500">
+        Title="INOTE" Height="600" Width="500">
     <Grid>
         <DockPanel>
             <ScrollViewer >
