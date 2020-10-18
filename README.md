@@ -25,3 +25,7 @@
     </connectionStrings>
 ```
 4. Finally run the application from Visual Studio.
+
+## Application Overview
+
+![INOTEGIF](INOTE.gif)
