@@ -65,6 +65,7 @@ namespace INOTE.ViewModel
 
         public LoginVM()
         {
+            MainWindow.SetMainToolbarVisibility(false);
             User = new User();
         }
 

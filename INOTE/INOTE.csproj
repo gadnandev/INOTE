@@ -160,6 +160,7 @@
     <Compile Include="ViewModel\CreateOrUpdateNoteVM.cs" />
     <Compile Include="ViewModel\Helper\PasswordBoxAssistant.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\NoteVm.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
     <Compile Include="ViewModel\ValueConverter\DateTimeToString.cs" />

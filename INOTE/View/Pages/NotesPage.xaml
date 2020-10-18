@@ -35,13 +35,13 @@
             <DataGrid Margin="25 0 25 25" AutoGenerateColumns="False" ColumnWidth="*" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding UserNotes}" SelectedItem="{Binding SelectedNote}" IsReadOnly="True">
                 <DataGrid.Resources>
                     <DataTemplate x:Key="ActionTemplate">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Content="{materialDesign:PackIcon Pencil}" Margin="5"
-                                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                        <StackPanel Orientation="Horizontal">
+                            <Button Content="{materialDesign:PackIcon Pencil}"
+                                    Style="{StaticResource MaterialDesignIconButton}"
                                     ToolTip="Update"
                                     Command="{Binding DataContext.CreateOrUpdateNoteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
-                            <Button Content="{materialDesign:PackIcon Delete}" Margin="5"
-                                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                            <Button Content="{materialDesign:PackIcon Delete}"
+                                    Style="{StaticResource MaterialDesignIconButton}"
                                     ToolTip="Delete"
                                     Command="{Binding DataContext.DeleteNoteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
                         </StackPanel>
@@ -51,7 +51,7 @@
                     <DataGridTextColumn Header="Title" Binding="{Binding Title}"/>
                     <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, Converter={StaticResource dateTimeToString}}"/>
                     <DataGridTextColumn Header="Updated Date" Binding="{Binding UpdatedDate, Converter={StaticResource dateTimeToString}}"/>
-                    <DataGridTemplateColumn Header="Action" CellTemplate="{StaticResource ActionTemplate}"/>
+                    <DataGridTemplateColumn Width="auto" Header="Action" CellTemplate="{StaticResource ActionTemplate}"/>
                 </DataGrid.Columns>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
@@ -59,12 +59,12 @@
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
             </DataGrid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-                <Button Content="{materialDesign:PackIcon ArrowLeftThick}" Command="{Binding PreviousCommand}" Margin="0,0,10,0"/>
-                <Label Content="{Binding CurrentPageNumber}"/>
-                <Label Content="/"/>
-                <Label Content="{Binding TotalPageCount}"/>
-                <Button Content="{materialDesign:PackIcon ArrowRightThick}" Command="{Binding NextCommand}" Margin="10,0,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon ArrowLeftThick}" Command="{Binding PreviousCommand}" Margin="0,0,10,0"/>
+                <Label VerticalAlignment="Center" Content="{Binding CurrentPageNumber}"/>
+                <Label VerticalAlignment="Center" Content="/"/>
+                <Label VerticalAlignment="Center" Content="{Binding TotalPageCount}"/>
+                <Button Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon ArrowRightThick}" Command="{Binding NextCommand}" Margin="10,0,0,0"/>
             </StackPanel>
         </StackPanel>
     </Grid>

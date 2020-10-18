@@ -1,4 +1,5 @@
-﻿using INOTE.View.Pages;
+﻿using INOTE.Core.Domain;
+using INOTE.View.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +23,35 @@ namespace INOTE.View
     {
         public static Frame Frame;
 
+        private static ToolBarTray Toolbar;
+
+        private static TextBlock Username;
+        private static TextBlock Email;
+
         public MainWindow()
         {
             InitializeComponent();
             Frame = MainWindowFrame;
+
+            Toolbar = MainToolbar;
+            Username = UsernameTb;
+            Email = EmailTb;
+
             MainWindowFrame.Navigate(new LoginPage());
+        }
+
+        public static void SetMainToolbarVisibility(bool isVisible, User user = null)
+        {
+            if(isVisible)
+            {
+                Toolbar.Visibility = Visibility.Visible;
+                Username.Text = user.Username;
+                Email.Text = user.Email;
+            }
+            else
+            {
+                Toolbar.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

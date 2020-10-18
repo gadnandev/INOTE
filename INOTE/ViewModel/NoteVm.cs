@@ -1,5 +1,6 @@
 ﻿using INOTE.Core.Domain;
 using INOTE.Core.Helper;
+using INOTE.View;
 using INOTE.View.Pages;
 using INOTE.ViewModel.Commands;
 using INOTE.ViewModel.Common;
@@ -181,6 +182,7 @@ namespace INOTE.ViewModel
 
         public NoteVm(User loggedInUser)
         {
+            MainWindow.SetMainToolbarVisibility(true, loggedInUser);
             _loggedInUser = loggedInUser;
             CalculateTotalPageCount();
             CurrentPageNumber = 1;
